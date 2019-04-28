@@ -9,7 +9,7 @@ import (
 func TestNewSafeMap(t *testing.T) {
 	sm := NewSafeMap()
 	if sm == nil {
-		t.Fatalf("failed to get data")
+		t.Fatalf("failed to create map")
 	}
 }
 
