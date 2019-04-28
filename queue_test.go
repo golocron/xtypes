@@ -11,9 +11,21 @@ const (
 )
 
 type mockItem struct {
-	index int
+	index    int
 	priority int
-	value string
+	value    string
+}
+
+func (mi *mockItem) Priority() int {
+	return mi.priority
+}
+
+func (mi *mockItem) Index() int {
+	return mi.index
+}
+
+func (mi *mockItem) SetIndex(idx int) {
+	mi.index = idx
 }
 
 func TestNewQueue(t *testing.T) {
