@@ -1,6 +1,6 @@
 package xtypes
 
-// Semaphore presents a channel that implements a semaphore pattern.
+// Semaphore presents a channel that implements the Semaphore pattern.
 type Semaphore chan struct{}
 
 // NewSemaphore returns a new semaphore ready to use.
