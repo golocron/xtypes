@@ -9,7 +9,7 @@ import (
 // This is clean and simple thread safe implementation with no magic.
 // Queue MUST be created using constructor.
 type Queue struct {
-	mu sync.Mutex
+	mu    sync.Mutex
 	items QItems
 }
 
