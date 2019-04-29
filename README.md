@@ -10,7 +10,7 @@ The package provides the following data structures:
 
 - Priority Queue based on `container/heap` from standard library
 - Queue based on slice
-- Semaphore implemented with channel
+- Semaphore implemented with a channel
 - Safe Map
 
 These types are safe for concurrent use.
@@ -24,7 +24,7 @@ go get github.com/golocron/xtypes
 
 ## Examples
 
-Examples can be found [here](exaples/examples.go)
+Examples can be found [here](examples/examples.go)
 
 ```bash
 go run examples/examples.go
