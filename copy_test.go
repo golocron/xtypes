@@ -10,36 +10,32 @@ type T1 struct {
 }
 
 func TestCopy(t *testing.T) {
-	v1 := &T1{Name: "rainbow"}
-	v2 := &T1{}
+	type testCase struct {
+		name string
 
-	if err := Copy(v2, v1); err != nil {
-		t.Fatal(err)
+		src *T1
+		dst *T1
 	}
 
-	if v1.Name != v2.Name {
-		t.Fatalf("Not Equal: expected %s => actual %s\n", v1.Name, v2.Name)
+	tests := []*testCase{
+		&testCase{
+			name: "VALID - Regular Struct",
+
+			src: &T1{Name: "rainbow"},
+			dst: &T1{},
+		},
 	}
 
-	if !reflect.DeepEqual(v1, v2) {
-		t.Fatal("Not Equal: reflect")
-	}
-}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if err := Copy(tc.dst, tc.src); err != nil {
+				t.Fatal(err)
+			}
 
-func TestCopy2(t *testing.T) {
-	v1 := &T1{Name: "rainbow"}
-	v2 := &T1{}
-
-	if err := Copy2(v2, v1); err != nil {
-		t.Fatal(err)
-	}
-
-	if v1.Name != v2.Name {
-		t.Fatalf("Not Equal: expected %s => actual %s\n", v1.Name, v2.Name)
-	}
-
-	if !reflect.DeepEqual(v1, v2) {
-		t.Fatal("Not Equal: reflect")
+			if !reflect.DeepEqual(tc.src, tc.dst) {
+				t.Fatal("Not Equal: reflect")
+			}
+		})
 	}
 }
 
@@ -47,12 +43,6 @@ func TestCopy2(t *testing.T) {
 func BenchmarkCopy(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Copy(&T1{Name: "rainbow"}, &T1{})
-	}
-}
-
-func BenchmarkCopy2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Copy2(&T1{Name: "rainbow"}, &T1{})
 	}
 }
 
