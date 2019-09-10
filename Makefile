@@ -8,7 +8,7 @@ test: ## Run tests
 	go test ./... -coverprofile=$(COVER_OUT)
 
 bench: ## Run benchmarks
-	go test -benchmem -bench .
+	go test -benchmem -bench=. ./...
 
 cover: ## Show tests coverage
 	@if [ -f $(COVER_OUT) ]; then \
